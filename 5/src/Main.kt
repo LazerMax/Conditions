@@ -1,17 +1,12 @@
 fun main() {
-    print("Введите первое число: ")
-    val number1 = readln().toDoubleOrNull() ?: return println("Ошибка ввода первого числа.")
+    print("Введите три числа: ")
+    val (a, b, c) = readln().split(" ").map { it.toInt() }
 
-    print("Введите второе число: ")
-    val number2 = readln().toDoubleOrNull() ?: return println("Ошибка ввода второго числа.")
+    val mid = if ((a==b) && (b==c)) "Ошибка"
+    else if ((a in b..c) || (a in c..b)) a
+    else if ((b in a..c) || (b in c..a)) b
+    else if ((c in a..b) || (c in b..a)) c
+    else "Системная ошибка"
 
-    print("Введите третье число: ")
-    val number3 = readln().toDoubleOrNull() ?: return println("Ошибка ввода третьего числа.")
-
-    if (number1 == number2 && number2 == number3) {
-        println("Ошибка")
-    } else {
-        val average = (number1 + number2 + number3) / 3
-        println("Среднее значение: $average")
-    }
+    println("Среднее число: $mid")
 }
